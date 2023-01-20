@@ -1,8 +1,10 @@
-function wait_for_button(rightbutton: number, wrongbutton: number): boolean {
+function waitForButton(rightbutton: number, wrongbutton: number): boolean {
     let rightpressed = false
     let wrongpressed = false
+    
     let started = input.runningTime()
     let now = input.runningTime()
+    
     while (now - started < 2000) {
         if (input.buttonIsPressed(rightbutton)) {
             rightpressed = true
@@ -24,20 +26,20 @@ function wait_for_button(rightbutton: number, wrongbutton: number): boolean {
 
 function show() {
     let key: number;
-    let key_wrong: number;
-    let key_str: string;
+    let keyWrong: number;
+    let keyStr: string;
     if (Math.randomBoolean()) {
         key = Button.A
-        key_wrong = Button.B
-        key_str = "A"
+        keyWrong = Button.B
+        keyStr = "A"
     } else {
         key = Button.B
-        key_wrong = Button.A
-        key_str = "B"
+        keyWrong = Button.A
+        keyStr = "B"
     }
     
-    basic.showString(key_str)
-    let success = wait_for_button(key, key_wrong)
+    basic.showString(keyStr)
+    let success = waitForButton(key, keyWrong)
     if (success) {
         basic.showIcon(IconNames.Happy)
     } else {
@@ -46,6 +48,6 @@ function show() {
     
 }
 
-basic.forever(function on_forever() {
+basic.forever(() => {
     show()
 })
